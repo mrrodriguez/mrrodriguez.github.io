@@ -196,6 +196,10 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-feed (~> 0.6)
+
+RUBY VERSION
+   ruby 2.4.0p0
 
 BUNDLED WITH
    1.14.5

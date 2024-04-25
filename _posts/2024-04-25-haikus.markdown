@@ -1,0 +1,43 @@
+---
+layout: post
+title: "My Haikus (Part 1)"
+author: Mike Rodriguez
+date: 2024-04-25
+tags: [haiku, development, programming, ai, poetry, funny]
+---
+
+## AI
+
+```
+I have a problem
+I cannot figure it out
+I ask the AI
+```
+
+## Meta
+
+```
+With five syllables
+I can say nothing useful
+With seven I can
+```
+
+```
+I wrote this myself
+I knew it would be real good
+I think I was wrong
+```
+
+## Programming
+
+```
+At work I write code
+Sometimes it makes me angry
+Then I type faster
+```
+
+```
+I’m using TypeScript
+It’s JavaScript but better
+No more type errors
+```

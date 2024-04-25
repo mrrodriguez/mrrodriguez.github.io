@@ -3,7 +3,7 @@ layout: post
 title: "My Haikus (Part 1)"
 author: Mike Rodriguez
 date: 2024-04-25
-tags: [haiku, development, programming]
+tags: [haiku, development, programming, ai, poetry, funny]
 ---
 
 ## AI

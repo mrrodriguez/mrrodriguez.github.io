@@ -1,0 +1,40 @@
+/* From https://github.com/allejo/jekyll-anchor-headings/wiki/Examples#github-style-octicon-links */
+
+h1 {
+    text-indent: -12px;
+}
+
+h2 {
+    text-indent: -10px;
+}
+
+h3 {
+    text-indent: -8px;
+}
+
+h4 {
+    text-indent: -6px;
+}
+
+h5 {
+    text-indent: -4px;
+}
+
+h6 {
+    text-indent: -2px;
+}
+
+h1 .octicon, h2 .octicon, h3 .octicon, h4 .octicon, h5 .octicon, h6 .octicon  {
+    visibility: hidden;
+}
+
+h1:hover .octicon, h2:hover .octicon, h3:hover .octicon, h4:hover .octicon, h5:hover .octicon, h6:hover .octicon {
+    visibility: visible;
+}
+
+.octicon {
+    fill: currentColor;
+    padding: 0;
+    margin-left: -16px;
+    vertical-align: middle;
+}

@@ -3,7 +3,7 @@ layout: post
 title: "From Emacs to Neovim"
 author: Mike Rodriguez
 date: 2024-05-20
-tags: [emacs, neovim, spacemacs, vim, vi, editor, development, programming ]
+tags: [emacs, neovim, spacemacs, vim, vscode, vscode-neovim, vi, editor, development, programming ]
 ---
 
 # Background

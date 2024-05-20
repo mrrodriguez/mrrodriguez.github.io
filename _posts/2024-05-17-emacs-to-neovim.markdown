@@ -2,7 +2,7 @@
 layout: post
 title: "From Emacs to Neovim"
 author: Mike Rodriguez
-date: 2024-05-17
+date: 2024-05-20
 tags: [emacs, neovim, spacemacs, vim, vi, editor, development, programming ]
 ---
 

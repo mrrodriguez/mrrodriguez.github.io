@@ -6,6 +6,10 @@ date: 2024-05-20
 tags: [emacs, neovim, spacemacs, vim, vscode, vscode-neovim, vi, editor, development, programming]
 ---
 
+### Update: 2024-05-22
+
+I continue this discussion into a "Part 2" post @ ["From Emacs to Neovim (Part 2)"]({% post_url 2024-05-20-emacs-to-neovim %}) where some concrete configuration examples are provided.
+
 # Background
 
 I have been using emacs for around 15 years with a "traditional" configuration and key bindings setup. I’ve primarily used it for Clojure/ClojureScript development. Occasionally, I have also used it for XML, HTML, JSON, CSS, C/C++, Ruby, Python, JavaScript, and Common Lisp.

@@ -100,7 +100,7 @@ More options are supported here and it can be more complex. The docs cover this 
 
 -----
 
-In the same way I wanted "save" to cause a return to "normal" mode in `spacemacs` that can be setup in `vscode` by adding this to the User `keybindings.json`:
+I think it useful to have the editor change to "normal" mode on "save". This seems like a fairly common configuration people setup for `vim` style editors. This is by adding this to the User `keybindings.json`:
 
 ```json
 {
@@ -133,7 +133,7 @@ I'll enumerate some quick configuration conveniences here that I added to `dotsp
 
 -----
 
-I found it convenient to have the editor change to "normal" mode (aka. `evil-normal-state` in `evil-mode`). This seems like a fairly common configuration people setup for `vim` style editors. This is done via:
+In the same way as I mentioned in the `neovim` [section above](#vscode-configuration) I wanted the editor to return to "normal" mode (aka. `evil-normal-state` in `evil-mode`) on "save". This is done via:
 
 ```lisp
 (add-hook 'after-save-hook #'evil-normal-state)

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "From Emacs to Neovim (Part 2)"
+title: "From Emacs to Neovim (Configuration)"
 author: Mike Rodriguez
-date: 2024-05-22
+date: 2024-05-23
 tags: [emacs, neovim, spacemacs, vim, vscode, vscode-neovim, vi, editor, development, programming]
 ---
 

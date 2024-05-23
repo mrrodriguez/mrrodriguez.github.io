@@ -8,7 +8,7 @@ tags: [emacs, neovim, spacemacs, vim, vscode, vscode-neovim, vi, editor, develop
 
 ### Update: 2024-05-22
 
-I continue this discussion into a "Part 2" post @ ["From Emacs to Neovim (Part 2)"]({% post_url 2024-05-22-emacs-to-neovim-part-2 %}) where some concrete configuration examples are provided.
+I continue this discussion into a "Part 2" post @ ["From Emacs to Neovim (Configuration)"]({% post_url 2024-05-23-emacs-to-neovim-part-2 %}) where some concrete configuration examples are provided.
 
 # Background
 
@@ -36,4 +36,4 @@ I still use `spacemacs` with hybrid mode bindings while doing Clojure/ClojureScr
 
 When I switch to `vscode` with the `vscode-neovim` extension, I can quickly adapt to that IDE environment. I can even toggle back and forth throughout the day without a struggle. Overall, the switch to `vim` bindings seems to be a worthwhile investment. I also use `neovim` now when I want to quickly open/edit text files from the terminal. My general thought is that you can get more “range”/"reach" out of `vim` bindings due to the extensions available in popular IDEs and other text editors (including in the terminal which is "the default" for `neovim`). To me, the editing efficiencies are just as powerful and efficient when compared to my traditional `emacs` experiences.
 
-I have posted a follow-up to this post @ ["From Emacs to Neovim (Part 2)"]({% post_url 2024-05-22-emacs-to-neovim-part-2 %}). In this I discuss some helpful resources and/or plugins/extensions/configuration that helped me transition from my traditional `emacs` setup concepts to `vim` concepts (via `neovim` specifically).
+I have posted a follow-up to this post @ ["From Emacs to Neovim (Configuration)"]({% post_url 2024-05-23-emacs-to-neovim-part-2 %}). In this I discuss some helpful resources and/or plugins/extensions/configuration that helped me transition from my traditional `emacs` setup concepts to `vim` concepts (via `neovim` specifically).

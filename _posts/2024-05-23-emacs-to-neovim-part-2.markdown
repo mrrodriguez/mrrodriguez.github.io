@@ -8,7 +8,7 @@ tags: [emacs, neovim, spacemacs, vim, vscode, vscode-neovim, vi, editor, develop
 
 # Background
 
-This is a continuation of my post ["From Emacs to Neovim"]({% post_url 2024-05-20-emacs-to-neovim %}). In this post, I am going to share some concrete configuration examples and concepts that have helped me adapting to `vim` configuration and bindings coming from an `emacs` background.
+This is a continuation of my post @ ["From Emacs to Neovim"]({% post_url 2024-05-20-emacs-to-neovim %}). In this post, I am going to share some concrete configuration examples and concepts that have helped me adapting to `vim` configuration and bindings coming from an `emacs` background.
 
 Note that my current, primary tooling focus is:
 * [spacemacs distribution](https://www.spacemacs.org) of `emacs` primarily for Clojure/ClojureScript development
@@ -41,9 +41,47 @@ I haven't worked with many plugins yet, but I have followed the popular recommen
 
 My public dotfiles can be found @ <https://github.com/mrrodriguez/emacs-dotfiles>
 
-`spacemacs` already comes with a lot of `vim` support via its use of [evil-mode](https://github.com/emacs-evil/evil). I haven't had to do too much configuration. There is also `spacemacs` specific features that typically involve the minibuffer and I use them the standard way. The `spacemacs` specific features are mostly expressed via a "leader key" which defaults to being the "space" key (aka `SPC`). This works well with `dotspacemacs-editing-style` set to `hybrid` or `vim`.
+`spacemacs` already comes with a lot of `vim` support via its use of [evil-mode](https://github.com/emacs-evil/evil). I haven't had to do too much configuration. There is also `spacemacs` specific features that typically involve the minibuffer and I use them the standard way. The `spacemacs` specific features are mostly expressed via a "leader key" which defaults to being the "space" key (aka. `SPC`). This works well with `dotspacemacs-editing-style` set to `hybrid` or `vim`.
+
+I'll enumerate some quick configuration conveniences here that I added to `dotspacemacs/user-config`. Later on below, I'll enumerate the references that I used for some of these.
+
+I found it convenient to have the editor change to "normal" mode (aka. `evil-normal-state` in `evil-mode`). This seems like a fairly common configuration people setup for `vim` style editors. This is done via:
+
+```lisp
+(add-hook 'after-save-hook #'evil-normal-state)
+```
+
+I also did not want to have to always use the "escape" key (aka. `ESC`) for returning to "normal" mode. This is very common in the `vim` community. There are many possible choices that are common and there are pros and cons to read about on them. I liked using `jk` which I set via:
+
+```lisp
+(setq-default evil-escape-key-sequence "jk")
+```
+
+Another thing I noticed that would help right early on was if I could go from "normal" mode to "insert" mode to insert a single character but then immediately be back in "normal" mode. I did this via:
+
+```lisp
+(evil-define-command my-evil-insert-char (count char)
+  (interactive "<c><C>")
+  (setq count (or count 1))
+  (insert (make-string count char)))
+
+(evil-define-command my-evil-append-char (count char)
+  (interactive "<c><C>")
+  (setq count (or count 1))
+  (when (not (eolp))
+    (forward-char))
+  (insert (make-string count char)))
+
+(define-key evil-normal-state-map (kbd "s") 'my-evil-insert-char)
+(define-key evil-normal-state-map (kbd "S") 'my-evil-append-char)
+```
 
 #### Spacemacs references
+
+I have found these sources to be valuable in updating my `spacemacs` configuration with a `vim` emphasis:
+
+* ["Single character insert for Evil"](https://www.reddit.com/r/emacs/comments/7ogu7a/comment/ds9py2s/?utm_source=reddit&utm_medium=web2x&context=3)
+* ["Spacemacs : insert single character in normal mode"](https://emacs.stackexchange.com/questions/32450/spacemacs-insert-single-character-in-normal-mode)
 
 # VSCode configuration
 

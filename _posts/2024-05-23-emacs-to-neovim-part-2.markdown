@@ -85,4 +85,51 @@ I have found these sources to be valuable in updating my `spacemacs` configurati
 
 # VSCode configuration
 
+There were certain helpful configuration changes to `vscode` that helped for the `vscode-neovim` integration for me. Later on below, I'll enumerate the references that I used for some of these.
+
+To use my `neovim` configuration within `vscode-neovim` I added this to my User `settings.json`:
+
+```json
+"vscode-neovim.neovimInitVimPaths.darwin": "/Users/mikerod/.config/nvim/init.lua"
+```
+
+Using macOS I needed to change the setting to allow for holding a key to repeat it via:
+
+```sh
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+```
+
+for the same reason discussed above concerning `spacemacs` configuration, I wanted `jk` to return to "normal" mode the same way `ESC` does. To do this I added to the `vscode` User `settings.json` file:
+
+```json
+"vscode-neovim.compositeKeys": {
+    "jk": {
+      "command": "vscode-neovim.escape"
+    }
+  },
+```
+
+More options are supported here and it can be more complex. The docs cover this well (which I'll link below in references).
+
+In the same way I wanted "save" to cause a return to "normal" mode in `spacemacs` that can be setup in `vscode` by adding this to the User `keybindings.json`:
+
+```json
+{
+    "command": "runCommands",
+    "key": "cmd+s",
+    "when": "editorTextFocus && neovim.init && neovim.mode == 'insert'",
+    "args": {
+      "commands": ["workbench.action.files.save", "vscode-neovim.escape"]
+    }
+  }
+```
+
 #### VSCode references
+
+I have found these sources to be valuable in updating my `vscode` configuration with a `vscode-neovim` emphasis:
+
+* ["Integrate Neovim inside VSCode"](https://medium.com/@shaikzahid0713/integrate-neovim-inside-vscode-5662d8855f9d)
+* ["Composite escape keys"](https://github.com/vscode-neovim/vscode-neovim/blob/02d13f0e119afbec8f68fe5add0f2c2a1072ec49/README.md#composite-escape-keys)
+* ["In VSCode Neovim, press Ctrl+S to save file and switch to normal mode?"](https://stackoverflow.com/a/77769949/924604)
+  * Note that there is a `"command": "runCommands"` now available so the `multi-command` extension is not needed. My configuration example above utilizes this instead.
+  * See ["How can I run multiple commands with a single VS Code keybinding without an extension?"](https://stackoverflow.com/a/75808372/924604)

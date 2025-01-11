@@ -41,3 +41,21 @@ native to my device and what I'd prefer where possible.
 The only clear approach to install `ruby` and related packages for `x86_64` is to use `brew` for
 `x86_64` as well. It seems the smoothest past forward for this is to use dual, isolated `brew`
 installations for `arm64` and `x86_64`.
+
+# Setting it up
+
+Refer to this StackOverflow answer for ["How can I run two isolated installations of
+Homebrew?"](https://stackoverflow.com/questions/64951024/how-can-i-run-two-isolated-installations-of-homebrew/64951025#64951025)
+following steps 1-5 there as a precursor to the rest of my recommendations here. Here is a summary
+of those steps detailed there that should be performed first:
+1. Install `brew` natively on Apple Silicon (will install to `/opt/homebrew` by default). This
+   should be the `arm64` version.
+1. Install Intel-emulated `brew` (will install to `/usr/local` by default). This is the `x86_64`
+   version.
+   1. If you haven't yet installed Rosetta 2, you'll need to run `softwareupdate --install-rosetta`
+      first.
+1. Create an alias for Intel homebrew, eg. `brow` because "O"" for "old".
+1. Add the `arm64` version of `brew` to your `PATH`.
+
+I will assume zshell is used for the rest of this, but it shouldn't be too difficult to translate to
+another shell environment as needed.

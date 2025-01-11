@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Dual Homebrew Setup for ARM (Apple) vs x86 (Intel) Compatibility"
+title: "Dual Homebrew for Apple/Intel Compatibility"
 author: Mike Rodriguez
 date: 2025-01-11
-tags: [homebrew, brew, mac, macos, osx, apple, arm, arm64, M1, M2, M3, M4, intel, x86, x86_64, development, programming, build, setup]
+tags: [homebrew, brew, mac, macos, osx, apple, silicon, arm, arm64, M1, M2, M3, M4, intel, x86, x86_64, development, programming, build, setup]
 ---
 
 # Background

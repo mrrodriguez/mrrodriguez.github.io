@@ -32,3 +32,5 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - _docs
+

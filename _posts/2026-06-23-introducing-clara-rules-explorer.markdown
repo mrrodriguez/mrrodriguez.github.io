@@ -3,7 +3,7 @@ layout: post
 title: "Introducing Clara Rules Explorer"
 subtitle: "Analyzing and Visualizing the Session Dependency Graph"
 author: Mike Rodriguez
-date: 2026-06-22
+date: 2026-06-23
 tags:
   [
     clojure,

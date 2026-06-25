@@ -27,11 +27,12 @@ keeping the system maintainable. It is useful to be able to trace this rulebase
 dependency graph statically. Additionally, it is useful to overlay an active
 working memory state directly onto that graph.
 
-I have created a project to address this concern called **Clara Rules
-Explorer**. This is an experimental tool composed of a Clojure HTTP server
-layer and a SvelteKit UI designed to introspect rulebase structures, map
-dependency links, and visualize runtime working memory state. You can try a
-live interactive static demo of the tool at
+I have created a project to address this concern called [**Clara Rules
+Explorer**](https://github.com/mrrodriguez/clara-rules-explorer). This is an
+experimental tool composed of a Clojure HTTP server layer and a SvelteKit UI
+designed to introspect rulebase structures, map dependency links, and visualize
+runtime working memory state. You can try a live interactive static demo of the
+tool at
 [metasimple.org/clara-rules-explorer](https://www.metasimple.org/clara-rules-explorer/).
 
 <!-- prettier-ignore -->

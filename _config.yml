@@ -21,6 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://metasimple.org" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: MrMikeRodriguez
 github_username:  mrrodriguez
+repository: mrrodriguez/mrrodriguez.github.io
 
 google_analytics: UA-93482108-1
 

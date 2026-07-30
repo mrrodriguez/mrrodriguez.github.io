@@ -33,4 +33,5 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - _docs
+  - README.md
 

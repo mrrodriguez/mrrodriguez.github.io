@@ -30,6 +30,11 @@ markdown: kramdown
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import
+    - global-builtin
 exclude:
   - Gemfile
   - Gemfile.lock

@@ -4,6 +4,9 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["master", "main"]
+  
+  # Runs on PRs to verify the build
+  pull_request:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -44,6 +47,8 @@ jobs:
 
   # Deployment job
   deploy:
+    # Only run deployment on pushes, skip on PRs
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

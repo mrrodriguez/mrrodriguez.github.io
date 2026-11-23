@@ -296,7 +296,7 @@ character threshold, it transparently truncates the middle of the payload,
 leaving the head and tail intact and instructing the agent to use targeted
 line-range reads if the omitted section is needed.
 
-See the [pi-agent-recipes README](https://github.com/mrrodriguez/pi-agent-recipes#7-cost-protections--truncation-cost-protectionsts-and-smart-truncationts)
+See the [pi-agent-recipes README](https://github.com/mrrodriguez/pi-agent-recipes/blob/main/README.md#7-cost-protections--truncation-cost-protectionsts-and-smart-truncationts)
 for configuration flags and environment variables for these guards.
 
 ---

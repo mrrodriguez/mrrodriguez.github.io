@@ -144,4 +144,81 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
 }
 
+.text-success {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.text-warning {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.text-error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* Post kind badges and home filter bar */
+.post-kind-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  vertical-align: middle;
+  margin-left: 0.45rem;
+  line-height: 1.45;
+  background-color: #eef2f6;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.post-kind-technical {
+  background-color: #edf4fb;
+  color: var(--secondary-color);
+  border-color: #c5ddf5;
+}
+
+.post-kind-creative {
+  background-color: #f5effb;
+  color: #6d28d9;
+  border-color: #ddd6fe;
+}
+
+.post-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-filter-btn {
+  appearance: none;
+  background: #f8fafc;
+  color: var(--text-color);
+  border: 1px solid #d5dce4;
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.post-filter-btn:hover {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.post-filter-btn.active {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: #ffffff;
+}
+
 

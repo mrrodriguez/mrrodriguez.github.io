@@ -1,0 +1,1 @@
+{% assign post_kind = include.kind | default: "technical" | downcase | strip %}<span class="post-kind-badge post-kind-{{ post_kind | slugify }}">{{ post_kind | replace: "-", " " }}</span>

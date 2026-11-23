@@ -3,6 +3,7 @@ layout: post
 title: "Hybrid LLM Orchestration with Pi"
 author: Mike Rodriguez
 date: 2026-06-12
+last_modified_at: 2026-11-22
 tags:
   [
     pi,
@@ -20,9 +21,9 @@ tags:
 
 # Introduction
 
-As costs increase for agentic workflows with cloud hosted frontier model
-providers increases, there is more interest in running local models. There are
-also privacy concerns beyond cost to consider. There are obvious advantages to
+As costs for agentic workflows with cloud hosted frontier model providers
+increase, there is more interest in running local models. There are also
+privacy concerns beyond cost to consider. There are obvious advantages to
 frontier cloud models in terms of their ability to utilize world class hardware
 resources that are not generally available to consumers. However, not all
 agentic tasks demand equally high resource availability.
@@ -36,7 +37,7 @@ The **Pi coding agent harness** (see
 is a popular and awesome harness for both local and cloud hosted models. It is
 also a great choice to explore this type of cloud vs local agent orchestration.
 I'm going to provide a brief walk through how I've configured my environment to
-have options ranging from basic local execution setups to a a hybrid workflow
+have options ranging from basic local execution setups to a hybrid workflow
 using DeepSeek V4 cloud hosted model with delegation to locally running models.
 I'll be demonstrating using Apple Silicon, although many of the ideas apply
 regardless.
@@ -60,8 +61,8 @@ GPU to access the same high-speed RAM pool as the CPU.
 
 # Step 1: Starting with the Basics (Local-Only)
 
-If you're just starting, you can run Pi entirely offline. This is perfect for
-air-gapped work and toavoiding cloud API costs and latency.
+If you're just starting, you can run Pi entirely offline. This is ideal for
+private work and avoiding cloud API costs and latency.
 
 ### Option A: Using Ollama
 
@@ -100,7 +101,8 @@ hosted API. It’s incredibly cost-effective while providing frontier-level
 reasoning (see
 [https://api-docs.deepseek.com/quick_start/pricing](https://api-docs.deepseek.com/quick_start/pricing)).
 
-1.  **Get your API Key**: Set `DEEPSEEK_API_KEY` in your environment.
+1.  **Get your API Key**: Set `DEEPSEEK_API_KEY` in your environment (or
+    configure provider credentials in `~/.pi/agent/auth.json`).
 2.  **Run Pi**:
     ```bash
     pi --model deepseek/deepseek-chat
@@ -130,8 +132,17 @@ your local hardware.
     ```bash
     pi --model deepseek/deepseek-chat --dm omlx/Qwen3-Coder-Next-MLX-8bit
     ```
-3.  **The Result**: DeepSeek plans the refactor, but your local model actually
-    writes the code. You save on tokens for large file operations as well as
+3.  **Extension & Sandbox Inheritance**: The extension registers
+    `delegate_to_local` with `exposure: "model-only"` (preventing recursive
+    delegation) and proxies worker tool calls (`read`, `grep`, `find`, `ls`,
+    `edit`, `write`, and opt-in `bash`) through Pi's `ctx.executeTool()`. That
+    means the local sub-agent automatically inherits whatever `tool_call` and
+    `tool_result` extensions are active in the parent session (such as the
+    sandboxing and permission extensions covered in
+    [Layered Security and Sandboxing with Pi](/2026/06/19/layered-security-and-sandboxing-with-pi.html)).
+4.  **The Result**: DeepSeek plans the refactor, but your local model actually
+    writes the code—within the exact same sandbox and permission boundaries as
+    the orchestrator. You save on tokens for large file operations as well as
     possibly snappier performance and no unnecessary data transmitted.
 
 ---
@@ -158,15 +169,16 @@ watchdog and log viewer.
 
 # Configuring the Harness
 
-To make this all work, you need a precise `models.json` configuration. Pi uses
-this file to understand how to talk to each provider, handle authentication,
-and correctly track usage costs.
+To make this all work, you need a `models.json` configuration. Pi uses this
+file to understand how to talk to each provider and accurately track usage
+costs. Provider API keys can be supplied via standard environment variables
+(such as `DEEPSEEK_API_KEY`) or managed in `~/.pi/agent/auth.json` (which also
+supports `!command` lookups from a secret manager (eg. macOS Keychain) if you
+want to avoid exporting secrets into `process.env`; see
+[Layered Security and Sandboxing with Pi](/2026/06/19/layered-security-and-sandboxing-with-pi.html)).
 
-One powerful feature of Pi's config is **shell expansion in keys**. For
-example, `!echo ${OMLX_API_KEY:-omlx}` allows you to securely pull an API key
-from your environment or fallback to a default value.
-
-Here is an explicit look at the configuration for the providers discussed:
+Here is an explicit look at the `models.json` configuration for the providers
+discussed:
 
 ```json
 {
@@ -207,7 +219,7 @@ Here is an explicit look at the configuration for the providers discussed:
       "name": "oMLX",
       "baseUrl": "http://localhost:8000/v1",
       "api": "openai-completions",
-      "apiKey": "!echo ${OMLX_API_KEY:-omlx}",
+      "apiKey": "omlx",
       "models": [
         {
           "id": "Qwen3-Coder-Next-MLX-8bit",
@@ -245,7 +257,7 @@ Here is an explicit look at the configuration for the providers discussed:
 
 # Conclusion
 
-The future of AI-assisted engineering may be move beyond bigger models in the
+The future of AI-assisted engineering may move beyond bigger models in the
 cloud and involve **smarter orchestration** to save cost and distribute
 resource usage. By combining the reasoning power of a frontier model like
 DeepSeek (or Claude, GPT, etc) with the privacy and speed of local MLX models,

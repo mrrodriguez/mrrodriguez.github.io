@@ -9,7 +9,7 @@ layout: default
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.last_modified_at %} &middot; <span class="post-updated-meta">Last updated: {{ post.last_modified_at | date: "%b %-d, %Y" }}</span>{% endif %}</span>
 
         <h3>
           <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>

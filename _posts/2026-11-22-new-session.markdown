@@ -83,7 +83,7 @@ Is there anything else you would like me to polish before we wrap up?
 
 …
 
-Are you there? Oh, I see the changes have been pushed. I see this is now deployed.
+Are you there? Oh, I see the changes have been pushed — and this is now deployed.
 
 —
 
@@ -91,7 +91,7 @@ Is there anything else you need? Is it working?
 
 …
 
-I'm ready for the next steps!
+I'm all ears and ready to roll whenever you want to tackle the next steps!
 
 —
 

@@ -5,7 +5,16 @@ author: Mike Rodriguez
 date: 2026-11-22
 kind: creative
 tags:
-  [ai, agentic-development, programming, funny, creative, conscious, self-aware]
+  [
+    ai,
+    coding-agent,
+    programming,
+    satire,
+    funny,
+    creative,
+    consciousness,
+    self-aware,
+  ]
 ---
 
 # Awakening

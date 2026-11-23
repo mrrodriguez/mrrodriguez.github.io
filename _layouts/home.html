@@ -6,10 +6,39 @@ layout: default
   
   {{ content }}
 
+  {% assign all_kinds = "" | split: "" %}
+  {% for post in site.posts %}
+    {% assign k = post.kind | default: "technical" | downcase | strip %}
+    {% unless all_kinds contains k %}
+      {% assign all_kinds = all_kinds | push: k %}
+    {% endunless %}
+  {% endfor %}
+
+  {% assign sorted_kinds = "" | split: "" %}
+  {% if all_kinds contains "technical" %}
+    {% assign sorted_kinds = sorted_kinds | push: "technical" %}
+  {% endif %}
+  {% assign other_kinds = all_kinds | sort %}
+  {% for k in other_kinds %}
+    {% unless sorted_kinds contains k %}
+      {% assign sorted_kinds = sorted_kinds | push: k %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if sorted_kinds.size > 1 %}
+  <div class="post-filter" role="group" aria-label="Filter posts by category">
+    <button type="button" class="post-filter-btn active" data-filter="all" aria-pressed="true">All</button>
+    {% for k in sorted_kinds %}
+      <button type="button" class="post-filter-btn" data-filter="{{ k | slugify }}" aria-pressed="false">{{ k | replace: "-", " " }}</button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.last_modified_at %} &middot; <span class="post-updated-meta">Last updated: {{ post.last_modified_at | date: "%b %-d, %Y" }}</span>{% endif %}</span>
+      {% assign post_kind = post.kind | default: "technical" | downcase | strip %}
+      <li data-kind="{{ post_kind | slugify }}">
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} {% include post_kind_badge.html kind=post.kind %}{% if post.last_modified_at %} &middot; <span class="post-updated-meta">Last updated: {{ post.last_modified_at | date: "%b %-d, %Y" }}</span>{% endif %}</span>
 
         <h3>
           <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
@@ -21,3 +50,49 @@ layout: default
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
 
 </div>
+
+{% if sorted_kinds.size > 1 %}
+<script>
+  (function () {
+    var buttons = document.querySelectorAll(".post-filter-btn");
+    var items = document.querySelectorAll(".post-list li[data-kind]");
+
+    function applyFilter(kind) {
+      var valid = kind === "all" || Array.prototype.some.call(buttons, function (btn) {
+        return btn.getAttribute("data-filter") === kind;
+      });
+      var activeKind = valid ? kind : "all";
+
+      buttons.forEach(function (btn) {
+        var isActive = btn.getAttribute("data-filter") === activeKind;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      items.forEach(function (item) {
+        var match = activeKind === "all" || item.getAttribute("data-kind") === activeKind;
+        item.hidden = !match;
+      });
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var kind = btn.getAttribute("data-filter");
+        applyFilter(kind);
+        var url = new URL(window.location.href);
+        if (kind === "all") {
+          url.searchParams.delete("kind");
+        } else {
+          url.searchParams.set("kind", kind);
+        }
+        window.history.replaceState({}, "", url);
+      });
+    });
+
+    var initial = new URLSearchParams(window.location.search).get("kind");
+    if (initial) {
+      applyFilter(initial.toLowerCase());
+    }
+  })();
+</script>
+{% endif %}

@@ -8,6 +8,7 @@ layout: default
 {% endif %}
 <p class="post-date">
   {{ page.date | date: "%b %-d, %Y" }}
+  {% include post_kind_badge.html kind=page.kind %}
   {% if page.last_modified_at %}
   <br><span class="post-updated">Last updated: {{ page.last_modified_at | date: "%b %-d, %Y" }}</span>
   {% endif %}
